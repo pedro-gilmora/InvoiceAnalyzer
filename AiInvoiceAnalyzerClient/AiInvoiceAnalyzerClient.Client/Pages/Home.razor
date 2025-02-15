@@ -1,0 +1,53 @@
+﻿@page "/"
+@using Markdig
+@inject AiInvoiceAnalyzerService service;
+
+<PageTitle>Analyze</PageTitle>
+
+<FluentCard>
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentTextField Style="width:100%" Immediate @bind-Value="query" @bind-Disabled="isQuerying" @onkeypress="OnKeyPress">
+            @if (isQuerying)
+            {
+                <FluentProgressRing Slot="end" Width="20px" />
+            }
+            else
+            {
+                <FluentIcon Value="@(new Icons.Regular.Size20.DocumentData())" Slot="end" Color="Color.Neutral" OnClick="QueryAsync" />
+            }
+        </FluentTextField>
+    </FluentStack>
+    @* <FluentLabel>@query</FluentLabel> *@
+    <FluentLabel MarginBlock="8px">@((MarkupString)response)</FluentLabel>
+</FluentCard>
+
+@code {
+    string query = "";
+    bool isQuerying = false;
+    string response = "";
+
+    async Task QueryAsync()
+    {
+        response = "";
+        isQuerying = !isQuerying;
+        try
+        {
+            string markdown = await service.QueryAsync(query);
+
+            response = Markdown.ToHtml(markdown is ['"', .. var str, '"'] ? str : markdown);
+        }
+        catch (Exception e)
+        {
+            response = "We got an error: " + e.Message;
+        }
+        finally
+        {
+            isQuerying = false;
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task OnKeyPress(global::Microsoft.AspNetCore.Components.Web.KeyboardEventArgs e)
+    {
+        if(e.Key is "Enter") await QueryAsync();
+    }
+}

@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-    <PackageReference Include="Microsoft.KernelMemory.AI.Ollama" Version="0.93.241118.1" />
-    <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.93.241118.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
+    <PackageReference Include="Microsoft.KernelMemory.AI.Ollama" Version="0.97.250211.1" />
+    <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.97.250211.1" />
   </ItemGroup>
 
 </Project>

@@ -15,7 +15,7 @@ OnCompleted="@OnCompletedAsync"
 Style="height: 250px;border-radius: 4px;">
     <ChildContent>
         <label for="doc-receiver">
-            <FluentIcon Value="@(new @Icons.Regular.Size24.ArrowUpload())" />
+            <FluentIcon Value="@(new FluentIcons24.ArrowUpload())" />
         </label>
         <div>
             Drag files here you wish to upload,
@@ -101,7 +101,7 @@ Responde tan breve como puedas");
 
 ------
 
-About {fileUploading}:{(Markdown.ToHtml(markdown is [q, .. var str, q] ? str : markdown))}
+About {fileUploading}:{(Markdig.Markdown.ToHtml(markdown is [q, .. var str, q] ? str : markdown))}
 
 ------";
                 });

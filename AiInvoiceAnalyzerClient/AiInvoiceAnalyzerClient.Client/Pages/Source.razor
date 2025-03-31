@@ -1,0 +1,22 @@
+<FluentStack Orientation="Orientation.Vertical">
+    <FluentLabel>
+        <FluentIcon Value="@(new Size16.Document())" Color="Color.Neutral" />
+        <FluentLabel>@Content.Name</FluentLabel>
+    </FluentLabel>
+    @if (Content.IsLoading)
+    {
+        <FluentProgress />
+    }
+</FluentStack>
+
+@code {
+    [Parameter]
+    public required MessageContent Content { get; set; }
+
+    protected override void OnInitialized() => Content.UpdateStatus = UpdateUploadStatus;
+
+    void UpdateUploadStatus(string status)
+    {
+        StateHasChanged();
+    }
+}

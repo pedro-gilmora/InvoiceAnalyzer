@@ -1,0 +1,43 @@
+﻿@*reverse iteration. do not touch*@
+
+@foreach (var chatItem in Agent.Messages)
+{
+    @switch (chatItem.Role)
+    {
+        case "user":
+            <FluentStack @key="chatItem" Orientation="Orientation.Vertical">
+                <Sources FilesContext="chatItem" />
+                <FluentStack HorizontalAlignment="HorizontalAlignment.End">
+                    <FluentLabel Style="background-color: var(--accent-base-color); padding: 8px; border-radius: 8px; max-width: 45%;">
+                        @chatItem.Message
+                    </FluentLabel>
+                    <FluentPersona Image="@(new Size16.Person().ToDataUri(size: "18px", color: "white"))"
+                                   ImageSize="36px">
+                    </FluentPersona>
+                </FluentStack>
+            </FluentStack>
+            break;
+        case "system":
+            break;
+        case "assistant":
+            <FluentStack @key="chatItem">
+                <FluentPersona Class="bot" Image="@(new Size16.Bot().ToDataUri(size: "18px", color: "white"))" ImageSize="36px" />
+                <FluentLabel Style="background-color: var(--info); padding: 8px; border-radius: 8px; max-width: 45%;">
+                    @((MarkupString)chatItem.Message)
+                </FluentLabel>
+            </FluentStack>
+            break;
+    }
+}
+
+<style>
+    .fluent-persona.bot .initials {
+        background-color: var(--info) !important;
+    }
+</style>
+@code {
+    [CascadingParameter]
+    public required EnterpriseAgent Agent { get; set; }
+
+    protected override void OnInitialized() => Agent.RefreshMessages = StateHasChanged;
+}

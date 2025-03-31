@@ -7,13 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\InvoiceAnalyzer.ServiceDefaults\InvoiceAnalyzer.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\AiInvoiceAnalyzerClient.Client\AiInvoiceAnalyzerClient.Client.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.2" />
+    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\Component.razor" Link="Component.razor" />
+    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\ConversationInput.razor" Link="ConversationInput.razor" />
+    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\CurrentSourceContext.razor" Link="CurrentSourceContext.razor" />
+    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\ErrorContentToastContent.razor" Link="ErrorContentToastContent.razor" />
+    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\MessageContent.razor" Link="MessageContent.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.*-*" />
-    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.*-*" />
+    <ProjectReference Include="..\..\InvoiceAnalyzer.ServiceDefaults\InvoiceAnalyzer.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\AiInvoiceAnalyzerClient.Client\AiInvoiceAnalyzerClient.Client.csproj" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.2" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.11.6" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.11.6" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.42.0" />
+    <PackageReference Include="OpenTelemetry.Api" Version="1.11.2" />
+		<PackageReference Include="Microsoft.KernelMemory.WebClient" Version="0.97.250211.1" />
   </ItemGroup>
 </Project>

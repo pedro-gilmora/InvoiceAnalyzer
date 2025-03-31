@@ -1,0 +1,17 @@
+@implements IToastContentComponent<ErrorData>
+
+<FluentAccordion>
+    <FluentAccordionItem Heading="@Content.Subtitle" Expanded="false">
+        <ChildContent>
+            <FluentLabel>@Content.Details</FluentLabel>
+        </ChildContent>
+    </FluentAccordionItem>
+</FluentAccordion>
+
+@code {
+    [CascadingParameter]
+    private FluentToast Toast { get; set; } = default!;
+
+    [Parameter]
+    public ErrorData Content { get; set; } = default!;
+}

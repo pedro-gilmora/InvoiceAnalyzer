@@ -1,0 +1,17 @@
+<FluentStack Style="max-height: 100px" HorizontalAlignment="HorizontalAlignment.Start" VerticalAlignment="VerticalAlignment.Center">
+
+    @foreach (var source in FilesContext.Files)
+    {
+        <Source @key=source.FileId Content="source" />
+    }
+
+</FluentStack>
+
+@code {
+    [Parameter]
+    public required ISourcesContainer FilesContext { get; set; }
+
+
+
+    protected override void OnInitialized() => FilesContext.UpdateFiles = StateHasChanged;
+}

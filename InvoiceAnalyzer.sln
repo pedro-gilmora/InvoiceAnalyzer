@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiInvoiceAnalyzerClient", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiInvoiceAnalyzerClient.Client", "AiInvoiceAnalyzerClient\AiInvoiceAnalyzerClient.Client\AiInvoiceAnalyzerClient.Client.csproj", "{5FFDED0D-6087-42A3-8194-081812F66D89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9399BE1C-6C42-4EF8-815C-5A4B421E8418}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{5FFDED0D-6087-42A3-8194-081812F66D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FFDED0D-6087-42A3-8194-081812F66D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FFDED0D-6087-42A3-8194-081812F66D89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9399BE1C-6C42-4EF8-815C-5A4B421E8418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9399BE1C-6C42-4EF8-815C-5A4B421E8418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9399BE1C-6C42-4EF8-815C-5A4B421E8418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9399BE1C-6C42-4EF8-815C-5A4B421E8418}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

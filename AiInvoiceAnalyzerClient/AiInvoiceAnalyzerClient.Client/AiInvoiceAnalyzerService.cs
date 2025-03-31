@@ -1,34 +1,27 @@
-﻿using System.Net.Http.Json;
+﻿using Microsoft.KernelMemory;
+
+using System.Net.Http.Json;
 
 namespace AiInvoiceAnalyzerClient.Client;
 
-public class AiInvoiceAnalyzerService(HttpClient client)
+public class AiService(MemoryWebClient client)
 {
     public async ValueTask<string> UploadAsync(string name, string contentType, byte[] fileBytes)
     {
-        StreamContent fileStream = new (new MemoryStream(fileBytes));
+        using MemoryStream fileStream = new (fileBytes);
 
-        fileStream.Headers.ContentType = new(contentType);
+        var response = await client.ImportDocumentAsync(fileStream);
 
-        MultipartFormDataContent content = new()
-        {
-            { fileStream, "file", name }
-        };
-
-        var response = await client.PostAsync("/upload", content);
-
-        response.EnsureSuccessStatusCode();
-
-        return await response.Content.ReadAsStringAsync();
+        return response;
     }
 
-    public async ValueTask<string> QueryAsync(string query)
+    public async ValueTask<MemoryAnswer> QueryAsync(string query)
     {
-        return await client.GetStringAsync($"/query?query={query}");
+        return await client.AskAsync(query);
     }
 
     public async ValueTask<bool> IsNotReadyDocument(string fileName)
     {
-        return await client.GetFromJsonAsync<bool>($"/fileNotReady/{fileName}");
+        return await client.IsDocumentReadyAsync(fileName);
     }
 }

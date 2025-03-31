@@ -1,26 +1,22 @@
-using AiInvoiceAnalyzerClient.Client;
-using AiInvoiceAnalyzerClient.Client.Pages;
+using AiInvoiceAnalyzerClient.Client.Models;
 using AiInvoiceAnalyzerClient.Components;
 
 using Microsoft.FluentUI.AspNetCore.Components;
+using Microsoft.KernelMemory;
+using Microsoft.SemanticKernel;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication
+    .CreateBuilder(args)
+    .AddServiceDefaults();
 
-builder.AddServiceDefaults();
-
-builder.Services.AddHttpClient<AiInvoiceAnalyzerService>(static client =>
-{
-    // This URL uses "https+http://" to indicate HTTPS is preferred over HTTP.
-    // Learn more about service discovery scheme resolution at https://aka.ms/dotnet/sdschemes.
-    client.BaseAddress = new("https+http://apiservice");
-});
-
-// Add services to the container.
-builder.Services.AddRazorComponents()
+builder.Services
+    .AddRazorComponents()
     .AddInteractiveServerComponents()
-    .AddInteractiveWebAssemblyComponents();
-
-builder.Services.AddFluentUIComponents();
+    .AddInteractiveWebAssemblyComponents().Services
+    .AddOpenAIChatCompletion("o3-mini", new OpenAI.OpenAIClient(Environment.GetEnvironmentVariable("OPENAI_API_KEY")!))
+    .AddFluentUIComponents()
+    .AddHttpClient<EnterpriseAgent>(static client => client.BaseAddress = new("https+http://apiservice"))
+    .Services.AddTransient<EnterpriseAgent>();
 
 var app = builder.Build();
 
@@ -36,10 +32,9 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-
-app.UseStaticFiles();
-app.UseAntiforgery();
+app.UseHttpsRedirection()
+    .UseStaticFiles()
+    .UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()

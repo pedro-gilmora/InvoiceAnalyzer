@@ -1,53 +1,85 @@
 ﻿@page "/"
-@using Markdig
-@inject AiInvoiceAnalyzerService service;
+@using AiInvoiceAnalyzerClient.Client.Pages
 
-<PageTitle>Analyze</PageTitle>
+@inject EnterpriseAgent agent
 
-<FluentCard>
-    <FluentStack VerticalAlignment="VerticalAlignment.Center">
-        <FluentTextField Style="width:100%" Immediate @bind-Value="query" @bind-Disabled="isQuerying" @onkeypress="OnKeyPress">
-            @if (isQuerying)
-            {
-                <FluentProgressRing Slot="end" Width="20px" />
-            }
-            else
-            {
-                <FluentIcon Value="@(new FluentIcons20.DocumentData())" Slot="end" Color="Color.Neutral" OnClick="QueryAsync" />
-            }
-        </FluentTextField>
-    </FluentStack>
-    @* <FluentLabel>@query</FluentLabel> *@
-    <FluentLabel MarginBlock="8px">@((MarkupString)response)</FluentLabel>
-</FluentCard>
+<PageTitle>Agent</PageTitle>
+
+<CascadingValue Value="@agent">
+
+    <FluentCard>
+
+        <FluentStack Style="height: 100%">
+
+            <FluentStack Orientation="Orientation.Vertical" style="height: 100%">
+
+                <div class="roster">
+
+                    <div class="chat-history">
+
+                        @if (agent.IsProcessing)
+                        {
+                            <CurrentMessage />
+                        }
+
+                        <MessageList />
+
+                    </div>
+
+                    <ConversationInput />
+
+                </div>
+
+            </FluentStack>
+
+        </FluentStack>
+
+    </FluentCard>
+
+</CascadingValue>
 
 @code {
-    string query = "";
-    bool isQuerying = false;
-    string response = "";
-
-    async Task QueryAsync()
-    {
-        response = "";
-        isQuerying = !isQuerying;
-        try
-        {
-            string markdown = await service.QueryAsync(query);
-
-            response = Markdown.ToHtml(markdown is ['"', .. var str, '"'] ? str : markdown);
-        }
-        catch (Exception e)
-        {
-            response = "We got an error: " + e.Message;
-        }
-        finally
-        {
-            isQuerying = false;
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task OnKeyPress(global::Microsoft.AspNetCore.Components.Web.KeyboardEventArgs e)
-    {
-        if(e.Key is "Enter") await QueryAsync();
-    }
+    protected override void OnInitialized() => agent.Refresh = StateHasChanged;
 }
+
+<style>
+    fluent-text-area::part(control) {
+        padding-right: 32px;
+        height: auto;
+        field-sizing: content;
+    }
+
+    .roster {
+        column-gap: 10px;
+        row-gap: 10px;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        .chat-history {
+            all: inherit;
+            flex-direction: column-reverse;
+        }
+
+    }
+
+    /* Define scrollbar width */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #555;
+        border-radius: 4px;
+    }
+
+    html {
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent-fill-rest) transparent;
+    }
+</style>

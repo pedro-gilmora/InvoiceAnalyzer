@@ -19,10 +19,10 @@ var apiService = builder
     .WithReference(db)
     .WaitFor(db);
 
-builder
-    .AddProject<Projects.AiInvoiceAnalyzerClient>("webfrontend")
-    .WithEnvironment("OPENAI_API_KEY", builder.Configuration["OpenAI:Key"])
-    .WithReference(apiService)
-    .WaitFor(apiService);
+//builder
+//    .AddProject<Projects.AiInvoiceAnalyzerClient>("webfrontend")
+//    .WithEnvironment("OPENAI_API_KEY", builder.Configuration["OpenAI:Key"])
+//    .WithReference(apiService)
+//    .WaitFor(apiService);
 
 builder.Build().Run();

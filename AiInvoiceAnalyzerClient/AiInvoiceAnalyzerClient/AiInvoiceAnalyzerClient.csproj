@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\Component.razor" Link="Component.razor" />
-    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\ConversationInput.razor" Link="ConversationInput.razor" />
-    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\CurrentSourceContext.razor" Link="CurrentSourceContext.razor" />
-    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\ErrorContentToastContent.razor" Link="ErrorContentToastContent.razor" />
-    <None Include="..\AiInvoiceAnalyzerClient.Client\Pages\MessageContent.razor" Link="MessageContent.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\InvoiceAnalyzer.ServiceDefaults\InvoiceAnalyzer.ServiceDefaults.csproj" />
     <ProjectReference Include="..\AiInvoiceAnalyzerClient.Client\AiInvoiceAnalyzerClient.Client.csproj" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.2" />

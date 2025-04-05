@@ -1,11 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+		<OutputType>Exe</OutputType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\Debug\net9.0\SimpleVectorDb\**" />
+    <EmbeddedResource Remove="bin\Debug\net9.0\SimpleVectorDb\**" />
+    <None Remove="bin\Debug\net9.0\SimpleVectorDb\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Program2.cs" />
@@ -16,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Npgsql" Version="9.1.0" />
+    <!-- <PackageReference Include="Aspire.Npgsql" Version="9.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
     <PackageReference Include="Microsoft.KernelMemory.Service.AspNetCore" Version="0.97.250211.1" />
     <PackageReference Include="Npgsql" Version="9.0.3" />
@@ -25,7 +32,21 @@
 		<PackageReference Include="Microsoft.KernelMemory.AI.OpenAI" Version="0.97.250211.1" />
 		<PackageReference Include="Microsoft.KernelMemory.Core" Version="0.97.250211.1" />
 		<PackageReference Include="Microsoft.KernelMemory.MemoryDb.Postgres" Version="0.97.250211.1" />
-		<PackageReference Include="Scalar.AspNetCore" Version="2.0.36" />
+		<PackageReference Include="Scalar.AspNetCore" Version="2.0.36" /> -->
+    
+    <PackageReference Include="MailKit" Version="4.11.0" />
+    
+    <PackageReference Include="Markdig" Version="0.40.0" />
+    <PackageReference Include="Microsoft.KernelMemory" Version="0.98.250324.1" />
+    <PackageReference Include="Microsoft.KernelMemory.Abstractions" Version="0.98.250324.1" />
+    <PackageReference Include="Microsoft.KernelMemory.AI.OpenAI" Version="0.98.250324.1" />
+    <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.98.250324.1" />
+    <PackageReference Include="Microsoft.KernelMemory.MemoryDb.Postgres" Version="0.98.250324.1" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.37.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\net9.0\" />
   </ItemGroup>
 
 </Project>

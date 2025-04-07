@@ -2,8 +2,8 @@
     <label for="navmenu-toggle" class="navmenu-icon"><FluentIcon Value="@(new FluentIcons20.Navigation())" Color="Colors.Fill" /></label>
     <nav class="sitenav" aria-labelledby="main-menu">
         <FluentNavMenu Id="main-menu" Width="250" Collapsible="true" Title="Navigation menu" @bind-Expanded="expanded" CustomToggle="true">
-            <FluentNavLink Href="/" Match="NavLinkMatch.All" Icon="@(new FluentIcons20.DocumentCatchUp())" IconColor="Colors.Accent">Analyze</FluentNavLink>
-            <FluentNavLink Href="doc-analyzer" Icon="@(new FluentIcons20.DocumentAdd())" IconColor="Colors.Accent">Import</FluentNavLink>
+            <FluentNavLink Href="/" Match="NavLinkMatch.All" Icon="@(new FluentIcons20.DocumentCatchUp())" IconColor="Colors.Accent">Chat</FluentNavLink>
+            @* <FluentNavLink Href="doc-analyzer" Icon="@(new FluentIcons20.DocumentAdd())" IconColor="Colors.Accent">Import</FluentNavLink> *@
         </FluentNavMenu>
     </nav>
 </div>

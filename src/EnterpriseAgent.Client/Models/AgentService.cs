@@ -10,7 +10,6 @@ using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 using System.Diagnostics;
-using System.Net.Http.Json;
 using System.Text.RegularExpressions;
 
 namespace EnterpriseAgent.Client.Models;

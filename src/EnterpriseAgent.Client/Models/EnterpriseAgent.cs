@@ -1,4 +1,4 @@
-using AiInvoiceAnalyzerClient.Client.Pages;
+using EnterpriseAgent.Client.Pages;
 
 using Markdig;
 
@@ -13,7 +13,7 @@ using System.Diagnostics;
 using System.Net.Http.Json;
 using System.Text.RegularExpressions;
 
-namespace AiInvoiceAnalyzerClient.Client.Models;
+namespace EnterpriseAgent.Client.Models;
 
 public partial class AgentService(
     MemoryServerless memory,

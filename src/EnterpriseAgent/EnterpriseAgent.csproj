@@ -4,10 +4,11 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>1793224a-c054-4a55-932e-f6c087df812b</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AiInvoiceAnalyzerClient.Client\EnterpriseAgent.Client.csproj" />
+    <ProjectReference Include="..\EnterpriseAgent.Client\EnterpriseAgent.Client.csproj" />
     <PackageReference Include="MailKit" Version="4.11.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.3" />
 	</ItemGroup>

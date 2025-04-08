@@ -1,4 +1,4 @@
-using AiInvoiceAnalyzerClient.Components;
+using EnterpriseAgent.Components;
 
 using MailKit;
 using MailKit.Net.Imap;
@@ -10,8 +10,7 @@ using Microsoft.SemanticKernel;
 using System.ComponentModel;
 
 var builder = WebApplication
-    .CreateBuilder(args)
-    .AddServiceDefaults();
+    .CreateBuilder(args);
 
 var apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 
@@ -46,7 +45,7 @@ app.UseHttpsRedirection()
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(AiInvoiceAnalyzerClient.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(EnterpriseAgent.Client._Imports).Assembly);
 
 app.Run();
 

@@ -13,7 +13,7 @@ public static class KernelAgentExtensions
         {
             EmbeddingModel = "text-embedding-ada-002",
             TextModel = "gpt-4.5-preview",
-            APIKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!
+            APIKey = appBuilder.Configuration["OpenAiKey"]!
         };
 
 #pragma warning disable SKEXP0070, SKEXP0010
